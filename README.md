@@ -315,11 +315,7 @@ This project demonstrates that **Multivariate Linear Regression can be extended 
 
 The main focus was **feature selection and the impact of scaling on regularized regression**.
 
-For the RobustScaler + LASSO experiment, the observed performance was:
-- **MAE:** 4.7872
-- **MSE:** 77.0230
-- **RMSE:** 8.7763
-- **R²:** 0.97583
+
 
 LASSO demonstrated clear feature-selection behaviour by reducing the coefficient of `CO AQI Value` to zero while retaining Ozone, NO2, and PM2.5. Ridge, in contrast, mainly shrank coefficient magnitudes while retaining the predictors. Elastic Net provided a combination of L1 and L2 regularization but showed comparatively lower predictive performance for the selected hyperparameters.
 
