@@ -319,7 +319,7 @@ The main focus was **feature selection and the impact of scaling on regularized 
 
 LASSO demonstrated clear feature-selection behaviour by reducing the coefficient of `CO AQI Value` to zero while retaining Ozone, NO2, and PM2.5. Ridge, in contrast, mainly shrank coefficient magnitudes while retaining the predictors. Elastic Net provided a combination of L1 and L2 regularization but showed comparatively lower predictive performance for the selected hyperparameters.
 
-The comparison between StandardScaler and RobustScaler showed that, for this particular dataset, the choice of scaler had **only a small effect on predictive performance**. The RobustScaler + LASSO experiment achieved MAE = 4.7872, RMSE = 8.7763, and R² = 0.97583. More importantly, both scalers produced the same LASSO feature-selection result, although the coefficient magnitudes differed.
+The comparison between StandardScaler and RobustScaler showed that, for this particular dataset, the choice of scaler had **only a small effect on predictive performance**.
 
 RobustScaler was included because the dataset contains extreme observations and its median/IQR-based transformation is less influenced by such values. However, the experiments do not support a universal claim that RobustScaler is always better than StandardScaler.
 
