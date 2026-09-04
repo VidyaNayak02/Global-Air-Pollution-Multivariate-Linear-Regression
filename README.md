@@ -309,24 +309,6 @@ RobustScaler was investigated because of the presence of extreme observations. I
 
 ---
 
-# Conclusion
-
-This project demonstrates that **Multivariate Linear Regression can be extended beyond a simple baseline by introducing regularization and feature scaling**.
-
-The main focus was **feature selection and the impact of scaling on regularized regression**.
-
-
-
-LASSO demonstrated clear feature-selection behaviour by reducing the coefficient of `CO AQI Value` to zero while retaining Ozone, NO2, and PM2.5. Ridge, in contrast, mainly shrank coefficient magnitudes while retaining the predictors. Elastic Net provided a combination of L1 and L2 regularization but showed comparatively lower predictive performance for the selected hyperparameters.
-
-The comparison between StandardScaler and RobustScaler showed that, for this particular dataset, the choice of scaler had **only a small effect on predictive performance**.
-
-RobustScaler was included because the dataset contains extreme observations and its median/IQR-based transformation is less influenced by such values. However, the experiments do not support a universal claim that RobustScaler is always better than StandardScaler.
-
-### Overall Takeaway
-
-> **The primary value of regularized regression in this project was not simply improving prediction accuracy, but understanding how regularization and feature scaling influence model coefficients and feature selection.**
-
 ---
 ## Conclusion
 
