@@ -328,6 +328,13 @@ RobustScaler was included because the dataset contains extreme observations and 
 > **The primary value of regularized regression in this project was not simply improving prediction accuracy, but understanding how regularization and feature scaling influence model coefficients and feature selection.**
 
 ---
+## Conclusion
+
+This study demonstrates how multivariate linear regression can be extended through regularization and feature scaling to gain deeper insights into model behaviour. While the baseline regression provided strong predictive performance, introducing LASSO, Ridge, and Elastic Net highlighted the distinct roles of each method. LASSO effectively performed feature selection by eliminating the `CO AQI Value` predictor, Ridge primarily shrank coefficients without exclusion, and Elastic Net offered a balance of both approaches, though its performance was sensitive to hyperparameter choices.
+
+The comparison between StandardScaler and RobustScaler revealed that, for this dataset, the choice of scaling method produced only minor differences in predictive accuracy. Importantly, both scalers led LASSO to select the same set of features, though the magnitude of coefficients varied. This underscores that scaling should be considered an integral part of the modelling pipeline, as its influence may become more pronounced in datasets with stronger skewness or extreme outliers.
+
+Overall, the findings emphasize that the value of regularized regression lies not only in improving prediction accuracy but also in enhancing interpretability. By examining how regularization and scaling affect coefficients and feature selection, practitioners can better understand the structure of their data and make more informed modelling decisions.
 
 ## Technologies Used
 
