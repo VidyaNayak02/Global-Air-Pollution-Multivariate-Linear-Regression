@@ -28,7 +28,7 @@ The following pollutant-related AQI variables were used as predictors:
 - `Ozone AQI Value`
 - `NO2 AQI Value`
 - `PM2.5 AQI Value`
-###Link of the dataset
+### Link of the dataset
 https://www.kaggle.com/datasets/sazidthe1/global-air-pollution-data
 ### Target
 
@@ -84,11 +84,8 @@ Two scaling methods were investigated.
 
 ## StandardScaler
 
-Standardization uses the mean and standard deviation:
+Standardization uses the mean and standard deviation
 
-\[
-Z = rac{X-\mu}{\sigma}
-\]
 
 It places features on a comparable scale based on their mean and standard deviation.
 
@@ -96,15 +93,6 @@ It places features on a comparable scale based on their mean and standard deviat
 
 RobustScaler uses the **median** and **interquartile range (IQR)**:
 
-\[
-X_{scaled} = rac{X-	ext{Median}}{IQR}
-\]
-
-where:
-
-\[
-IQR = Q3-Q1
-\]
 
 ### Why was RobustScaler considered?
 
@@ -120,9 +108,6 @@ LASSO stands for **Least Absolute Shrinkage and Selection Operator**.
 
 It uses **L1 regularization**:
 
-\[
-	ext{Loss} + \lambda\sum|eta_j|
-\]
 
 The L1 penalty can shrink some coefficients exactly to zero.
 
@@ -166,9 +151,6 @@ LASSO can remove features from the model by shrinking their coefficients to exac
 
 Ridge Regression uses **L2 regularization**:
 
-\[
-	ext{Loss} + \lambda\sumeta_j^2
-\]
 
 Unlike LASSO, Ridge generally shrinks coefficients toward zero without forcing them to exactly zero.
 
@@ -193,11 +175,6 @@ Ridge is useful for **coefficient shrinkage and regularization**, but it does no
 
 Elastic Net combines **L1 and L2 regularization**.
 
-It can be viewed conceptually as:
-
-\[
-	ext{L1 regularization} + 	ext{L2 regularization}
-\]
 
 The experiments used:
 
@@ -299,7 +276,10 @@ This study demonstrates how multivariate linear regression can be extended throu
 
 The comparison between StandardScaler and RobustScaler revealed that, for this dataset, the choice of scaling method produced only minor differences in predictive accuracy. Importantly, both scalers led LASSO to select the same set of features, though the magnitude of coefficients varied. This underscores that scaling should be considered an integral part of the modelling pipeline, as its influence may become more pronounced in datasets with stronger skewness or extreme outliers.
 
-Overall, the findings emphasize that the value of regularized regression lies not only in improving prediction accuracy but also in enhancing interpretability. By examining how regularization and scaling affect coefficients and feature selection, practitioners can better understand the structure of their data and make more informed modelling decisions.
+For this dataset, Robust Scaling showed a **slightly better overall performance**, particularly for Elastic Net and most Lasso metrics, while producing performance comparable to Standard Scaling for Ridge.
+
+Therefore, **Robust Scaling was selected as the preferred scaling technique for this analysis** because it provides greater resistance to outliers while maintaining comparable or slightly improved predictive performance.
+
 
 ## Technologies Used
 
