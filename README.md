@@ -28,7 +28,8 @@ The following pollutant-related AQI variables were used as predictors:
 - `Ozone AQI Value`
 - `NO2 AQI Value`
 - `PM2.5 AQI Value`
-
+###Link of the dataset
+https://www.kaggle.com/datasets/sazidthe1/global-air-pollution-data
 ### Target
 
 - `AQI Value`
@@ -148,7 +149,13 @@ CO AQI Value → 0
 was reduced to zero.
 
 This was observed with the StandardScaler experiment as well as the RobustScaler experiment.
+### Observation
+| Scaling | MAE ↓ | MSE ↓ | RMSE ↓ | R² ↑ |
+|---|---:|---:|---:|---:|
+| Standard | **4.7831** | 77.0575 | 8.7782 | 0.975819 |
+| Robust | 4.7872 | **77.0230** | **8.7763** | **0.975829** |
 
+Lasso produced almost identical results with both scaling techniques. Robust Scaling performed slightly better for MSE, RMSE, and R², while Standard Scaling had a slightly lower MAE.
 ### Key Learning
 
 LASSO can remove features from the model by shrinking their coefficients to exactly zero. This makes it particularly useful when the goal is **feature selection**, not just prediction.
@@ -169,12 +176,12 @@ Unlike LASSO, Ridge generally shrinks coefficients toward zero without forcing t
 
 The Ridge experiments produced performance extremely close to the baseline Multivariate Linear Regression model.
 
-For example, the RobustScaler version produced approximately:
+| Scaling | MAE ↓ | MSE ↓ | RMSE ↓ | R² ↑ |
+|---|---:|---:|---:|---:|
+| Standard | **4.8037** | **76.9921** | **8.7745** | **0.975839** |
+| Robust | 4.8037 | 76.9921 | 8.7745 | 0.975839 |
 
-- **MAE:** 4.8037
-- **MSE:** 76.9921
-- **RMSE:** 8.7745
-- **R²:** 0.97584
+Ridge produced virtually identical results with Standard and Robust Scaling. Standard Scaling was marginally better, but the difference was negligible.
 
 ### Key Learning
 
@@ -203,21 +210,14 @@ Here:
 - `alpha` controls the overall regularization strength.
 - `l1_ratio` controls the balance between L1 and L2 regularization.
 
-### Results
+### Observations
 
-#### Elastic Net + StandardScaler
+| Scaling | MAE ↓ | MSE ↓ | RMSE ↓ | R² ↑ |
+|---|---:|---:|---:|---:|
+| Standard | 5.0986 | 85.4715 | 9.2451 | 0.973178 |
+| Robust | **4.9135** | **80.7483** | **8.9860** | **0.974660** |
 
-- **MAE:** 5.0986
-- **MSE:** 85.4715
-- **RMSE:** 9.2451
-- **R²:** 0.97318
-
-#### Elastic Net + RobustScaler
-
-- **MAE:** 4.9135
-- **MSE:** 80.7483
-- **RMSE:** 8.9860
-- **R²:** 0.97466
+Elastic Net showed a clearer improvement with Robust Scaling. It achieved lower MAE, MSE, and RMSE and a higher R² score than its Standard Scaling counterpart.
 
 For the chosen parameters, the RobustScaler version performed better than the StandardScaler version, although both were below the strongest Linear Regression/Ridge results.
 
@@ -272,40 +272,23 @@ Thus, scaling should be considered as part of the modelling pipeline rather than
 
 ---
 
-# 8. Key Findings
+## 🔎 Key Findings
 
-### Feature Selection
+### Scaling
 
-LASSO selected:
+- Standard and Robust Scaling produced very similar results for Lasso and Ridge.
+- Robust Scaling produced a more noticeable improvement for Elastic Net.
+- Robust Scaling is generally preferred when outliers are present because it uses the median and IQR and is less sensitive to extreme values.
+- Based on the overall comparison, Robust Scaling showed a slightly better overall performance across the evaluated regularized models.
 
-- `Ozone AQI Value`
-- `NO2 AQI Value`
-- `PM2.5 AQI Value`
+### Regression Models
 
-and reduced:
+- Ridge + Standard Scaling achieved the lowest MSE and RMSE and the highest R² among the tested combinations.
+- Lasso + Standard Scaling achieved the lowest MAE.
+- Elastic Net performed better with Robust Scaling than with Standard Scaling.
+- The differences between Ridge and Lasso were very small.
 
-- `CO AQI Value`
-
-to a coefficient of zero.
-
-### Effect of Scaling
-
-StandardScaler and RobustScaler produced very similar predictive performance for the regularized models in this dataset.
-
-For LASSO, both scaling methods resulted in the **same selected features**, although the coefficient magnitudes differed.
-
-### Ridge vs LASSO
-
-- **LASSO:** useful when feature selection is important.
-- **Ridge:** useful when coefficient shrinkage is desired while retaining predictors.
-
-### Elastic Net
-
-Elastic Net combines the ideas of LASSO and Ridge, but the chosen hyperparameters did not produce the best predictive performance in these experiments.
-
-### RobustScaler
-
-RobustScaler was investigated because of the presence of extreme observations. Its purpose in this project was to test whether an outlier-resistant scaling method changes regularized regression behaviour.
+---
 
 ---
 
@@ -342,3 +325,5 @@ Overall, the findings emphasize that the value of regularized regression lies no
 ├── Elasric net using standard scalar.ipynb
 └── Elastic net using roboust.ipynb
 ```
+##Author
+Vidya Nayak
